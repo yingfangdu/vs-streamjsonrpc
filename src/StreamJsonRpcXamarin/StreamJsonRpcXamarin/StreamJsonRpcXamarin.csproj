@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F73ED6B0-EBD7-4B5A-ACBC-56FABE5AB3D6}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>StreamJsonRpc</RootNamespace>
+    <AssemblyName>StreamJsonRpc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <UseXamMacFullFramework>true</UseXamMacFullFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>__UNIFIED__;DEBUG;WEBSOCKETS;SERIALIZABLE_EXCEPTIONS;EXCLUDEFROMCODECOVERAGEATTRIBUTE;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>__UNIFIED__;WEBSOCKETS;SERIALIZABLE_EXCEPTIONS;EXCLUDEFROMCODECOVERAGEATTRIBUTE;RELEASE;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Microsoft.VisualStudio.Threading">
+      <HintPath>..\..\..\..\..\..\..\Users\yvonnedu\Source\BAE\packages\Microsoft.VisualStudio.Threading.15.3.20\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Validation">
+      <HintPath>..\..\..\..\..\..\..\Users\yvonnedu\Source\BAE\packages\Microsoft.VisualStudio.Validation.15.3.15\lib\net45\Microsoft.VisualStudio.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\Users\yvonnedu\Source\BAE\packages\Newtonsoft.Json.10.0.4-official\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\StreamJsonRpc\DataContracts\JsonRpcError.cs">
+      <Link>DataContracts\JsonRpcError.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\DataContracts\JsonRpcErrorCode.cs">
+      <Link>DataContracts\JsonRpcErrorCode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\DataContracts\JsonRpcMessage.cs">
+      <Link>DataContracts\JsonRpcMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\EventArgs\DisconnectedReason.cs">
+      <Link>EventArgs\DisconnectedReason.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\EventArgs\JsonRpcDisconnectedEventArgs.cs">
+      <Link>EventArgs\JsonRpcDisconnectedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Exceptions\BadRpcHeaderException.cs">
+      <Link>Exceptions\BadRpcHeaderException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Exceptions\RemoteInvocationException.cs">
+      <Link>Exceptions\RemoteInvocationException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Exceptions\RemoteMethodNotFoundException.cs">
+      <Link>Exceptions\RemoteMethodNotFoundException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Exceptions\RemoteRpcException.cs">
+      <Link>Exceptions\RemoteRpcException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Exceptions\RemoteTargetNotSetException.cs">
+      <Link>Exceptions\RemoteTargetNotSetException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Reflection\JsonRpcMethodAttribute.cs">
+      <Link>Reflection\JsonRpcMethodAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Reflection\MethodSignature.cs">
+      <Link>Reflection\MethodSignature.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Reflection\MethodSignatureAndTarget.cs">
+      <Link>Reflection\MethodSignatureAndTarget.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Reflection\TargetMethod.cs">
+      <Link>Reflection\TargetMethod.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\AwaitExtensions.cs">
+      <Link>AwaitExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\DelimitedMessageHandler.cs">
+      <Link>DelimitedMessageHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\ExcludeFromCodeCoverageAttribute.cs">
+      <Link>ExcludeFromCodeCoverageAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\HeaderDelimitedMessageHandler.cs">
+      <Link>HeaderDelimitedMessageHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\JsonRpc.cs">
+      <Link>JsonRpc.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\ReadBufferingStream.cs">
+      <Link>ReadBufferingStream.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\Resources.Designer.cs">
+      <Link>Resources.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\StreamJsonRpc\WebSocketMessageHandler.cs">
+      <Link>WebSocketMessageHandler.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.cs.resx">
+      <Link>Resources.cs.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.de.resx">
+      <Link>Resources.de.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.es.resx">
+      <Link>Resources.es.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.fr.resx">
+      <Link>Resources.fr.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.it.resx">
+      <Link>Resources.it.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.ja.resx">
+      <Link>Resources.ja.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.ko.resx">
+      <Link>Resources.ko.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.pl.resx">
+      <Link>Resources.pl.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.pt-BR.resx">
+      <Link>Resources.pt-BR.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.resx">
+      <Link>Resources.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.ru.resx">
+      <Link>Resources.ru.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.tr.resx">
+      <Link>Resources.tr.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.zh-Hans.resx">
+      <Link>Resources.zh-Hans.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\Resources.zh-Hant.resx">
+      <Link>Resources.zh-Hant.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.cs.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.cs.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.de.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.de.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.es.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.es.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.fr.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.fr.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.it.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.it.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.ja.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.ja.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.ko.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.ko.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.pl.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.pl.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.pt-BR.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.pt-BR.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.ru.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.ru.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.tr.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.tr.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.zh-Hans.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.zh-Hans.xlf</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\StreamJsonRpc\MultilingualResources\StreamJsonRpc.zh-Hant.xlf">
+      <Link>MultilingualResources\StreamJsonRpc.zh-Hant.xlf</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+  <Import Project="..\..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.7.18\build\Microsoft.VisualStudio.Threading.Analyzers.targets" Condition="Exists('..\..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.7.18\build\Microsoft.VisualStudio.Threading.Analyzers.targets')" />
+</Project>
