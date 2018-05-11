@@ -75,17 +75,20 @@ namespace StreamJsonRpc
 
                 var jsonBuilder = new StringBuilder();
                 char[] decodedChars = new char[this.readBuffer.Array.Length];
-                void DecodeInput()
+
                 {
                     int decodedCharsCount = this.readDecoder.GetChars(this.readBuffer.Array, 0, result.Count, decodedChars, 0, result.EndOfMessage);
                     jsonBuilder.Append(decodedChars, 0, decodedCharsCount);
                 }
 
-                DecodeInput();
                 while (!result.EndOfMessage)
                 {
                     result = await this.WebSocket.ReceiveAsync(this.readBuffer, cancellationToken).ConfigureAwait(false);
-                    DecodeInput();
+
+                    {
+                        int decodedCharsCount = this.readDecoder.GetChars(this.readBuffer.Array, 0, result.Count, decodedChars, 0, result.EndOfMessage);
+                        jsonBuilder.Append(decodedChars, 0, decodedCharsCount);
+                    }
                 }
 
                 return jsonBuilder.ToString();
@@ -119,7 +122,8 @@ namespace StreamJsonRpc
                         fixed (char* pContent = content)
                         {
                             char* pStart = pContent + content.Length - charsLeftToConvert;
-                            encoder.Convert(pStart, charsLeftToConvert, writeBuffer, this.writeBuffer.Length, false, out int charsUsed, out bytesUsed, out completed);
+                            int charsUsed;
+                            encoder.Convert(pStart, charsLeftToConvert, writeBuffer, this.writeBuffer.Length, false, out charsUsed, out bytesUsed, out completed);
                             charsLeftToConvert -= charsUsed;
                         }
                     }

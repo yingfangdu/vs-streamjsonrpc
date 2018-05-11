@@ -30,8 +30,8 @@ namespace StreamJsonRpc
 
         public override bool Equals(object obj)
         {
-            return obj is MethodSignatureAndTarget other
-                && this.Equals(other);
+            MethodSignatureAndTarget other = (MethodSignatureAndTarget)obj;
+            return this.Equals(other);
         }
 
         public bool Equals(MethodSignatureAndTarget other)

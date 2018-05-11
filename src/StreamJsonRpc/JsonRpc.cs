@@ -198,7 +198,7 @@ namespace StreamJsonRpc
         /// </remarks>
         public SynchronizationContext SynchronizationContext
         {
-            get => this.synchronizationContext;
+            get { return this.synchronizationContext; }
 
             set
             {
@@ -319,7 +319,8 @@ namespace StreamJsonRpc
             {
                 foreach (var item in mapping)
                 {
-                    if (this.targetRequestMethodToClrMethodMap.TryGetValue(item.Key, out var existingList))
+                    List<MethodSignatureAndTarget> existingList;
+                    if (this.targetRequestMethodToClrMethodMap.TryGetValue(item.Key, out existingList))
                     {
                         // Only add methods that do not have equivalent signatures to what we already have.
                         foreach (var newMethod in item.Value)
@@ -376,7 +377,8 @@ namespace StreamJsonRpc
             lock (this.syncObject)
             {
                 var methodTarget = new MethodSignatureAndTarget(handler, target);
-                if (this.targetRequestMethodToClrMethodMap.TryGetValue(rpcMethodName, out var existingList))
+                List<MethodSignatureAndTarget> existingList;
+                if (this.targetRequestMethodToClrMethodMap.TryGetValue(rpcMethodName, out existingList))
                 {
                     if (existingList.Any(m => m.Signature.Equals(methodTarget.Signature)))
                     {
@@ -839,15 +841,16 @@ namespace StreamJsonRpc
                 {
                     var attribute = (JsonRpcMethodAttribute)method.GetCustomAttribute(typeof(JsonRpcMethodAttribute));
                     var requestName = attribute?.Name ?? method.Name;
-
-                    if (!requestMethodToDelegateMap.TryGetValue(requestName, out var methodTargetList))
+                    List<MethodSignatureAndTarget> methodTargetList;
+                    if (!requestMethodToDelegateMap.TryGetValue(requestName, out methodTargetList))
                     {
                         methodTargetList = new List<MethodSignatureAndTarget>();
                         requestMethodToDelegateMap.Add(requestName, methodTargetList);
                     }
 
                     // Verify that all overloads of this CLR method also claim the same request method name.
-                    if (clrMethodToRequestMethodMap.TryGetValue(method.Name, out string previousRequestNameUse))
+                    string previousRequestNameUse;
+                    if (clrMethodToRequestMethodMap.TryGetValue(method.Name, out previousRequestNameUse))
                     {
                         if (!string.Equals(previousRequestNameUse, requestName, StringComparison.Ordinal))
                         {
@@ -860,7 +863,8 @@ namespace StreamJsonRpc
                     }
 
                     // Verify that all CLR methods that want to use this request method name are overloads of each other.
-                    if (requestMethodToClrMethodNameMap.TryGetValue(requestName, out string previousClrNameUse))
+                    string previousClrNameUse;
+                    if (requestMethodToClrMethodNameMap.TryGetValue(requestName, out previousClrNameUse))
                     {
                         if (!string.Equals(method.Name, previousClrNameUse, StringComparison.Ordinal))
                         {
@@ -967,7 +971,8 @@ namespace StreamJsonRpc
                         return JsonRpcMessage.CreateError(request.Id, JsonRpcErrorCode.NoCallbackObject, message);
                     }
 
-                    if (this.targetRequestMethodToClrMethodMap.TryGetValue(request.Method, out var candidateTargets))
+                    List<MethodSignatureAndTarget> candidateTargets;
+                    if (this.targetRequestMethodToClrMethodMap.TryGetValue(request.Method, out candidateTargets))
                     {
                         targetMethod = new TargetMethod(request, this.JsonSerializer, candidateTargets);
                     }
@@ -1004,7 +1009,8 @@ namespace StreamJsonRpc
                 //            when a single-threaded SynchronizationContext is applied.
                 await this.SynchronizationContextOrDefault;
                 object result = targetMethod.Invoke(cancellationToken);
-                if (!(result is Task resultingTask))
+                Task resultingTask = result as Task;
+                if (!(result is Task))
                 {
                     return JsonRpcMessage.CreateResult(request.Id, result, this.JsonSerializer);
                 }
